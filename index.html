@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>Document</title>
+</head>
+<body>
+<div class="flush vstack">
+  <div class="menubar hstack">
+    <a class="icon-link center">
+      <i class="ri-lg ri-landscape-line"></i>
+    </a>
+    <div class="spacer"></div>
+  </div>
+  <div class="hstack s-gap">
+    <div class="vstack" id="sidebar">
+
+      <label>
+        <input checked type="radio" value="line" name="sidebar-option">
+        <i class="sidebar-icon ri-subtract-line"></i>
+      </label>
+      <label>
+        <input type="radio" value="circle" name="sidebar-option">
+        <i class="sidebar-icon ri-basketball-line"></i>
+      </label>
+      <label>
+        <input type="radio" value="rectangle" name="sidebar-option">
+        <i class="sidebar-icon ri-4k-line"></i>
+      </label>
+    </div>
+    <div class="spacer app">
+      <canvas></canvas>
+    </div>
+  </div>
+
+</div>
+<script>var exports = {};</script>
+<script type="module" src="/javascripts/draw.ts"></script>
+</body>
+</html>
