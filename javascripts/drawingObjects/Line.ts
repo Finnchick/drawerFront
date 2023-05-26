@@ -26,8 +26,12 @@ export class Line extends DrawingObject {
     console.log('tes')
     const { x: xEnd, y: yEnd } = this.point
     context.lineTo(xEnd, yEnd)
-    context.strokeStyle = this.color
+    context.strokeStyle = this.getColor()
     context.stroke()
+  }
+
+  getColor (): string {
+    return this._isDragging || this._isSelected ? 'Red' : 'Black'
   }
 
   isColliding (px, py): boolean {
@@ -50,7 +54,6 @@ export class Line extends DrawingObject {
   }
 
   move (dx: number, dy: number): void {
-    this.color = 'Red'
     this.position.y += dy
     this.position.x += dx
     this.point.x += dx
@@ -74,7 +77,6 @@ export class Line extends DrawingObject {
   }
 
   select (): void {
-    this.color = this.color === 'Red' ? 'Black' : 'Red'
     this._isSelected = !this._isSelected
   }
 

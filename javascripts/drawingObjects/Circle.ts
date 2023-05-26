@@ -21,8 +21,12 @@ export class Circle extends DrawingObject {
     context.beginPath()
     const { x: xStart, y: yStart } = this.position
     context.arc(xStart, yStart, this.radius, 0, 2 * Math.PI)
-    context.strokeStyle = this.color
+    context.strokeStyle = this.getColor()
     context.stroke()
+  }
+
+  getColor (): string {
+    return this._isDragging || this._isSelected ? 'Red' : 'Black'
   }
 
   isColliding (px, py): boolean {
@@ -37,21 +41,18 @@ export class Circle extends DrawingObject {
   }
 
   move (dx: number, dy: number): void {
-    this.color = 'Red'
     this.position.x += dx
     this.position.y += dy
   }
 
   endMovement (): void {
     this._isDragging = false
-    this.color = 'Black'
   }
 
   remove () {
   }
 
   select (): void {
-    this.color = this.color === 'Red' ? 'Black' : 'Red'
     this._isSelected = !this._isSelected
   }
 

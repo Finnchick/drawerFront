@@ -26,8 +26,12 @@ export class Rectangle extends DrawingObject {
     const width = endingX - startX
     const height = endingY - startY
     context.rect(startX, startY, width, height)
-    context.strokeStyle = this.color
+    context.strokeStyle = this.getColor()
     context.stroke()
+  }
+
+  getColor (): string {
+    return this._isDragging || this._isSelected ? 'Red' : 'Black'
   }
 
   isColliding (px: number, py: number): boolean {
@@ -42,7 +46,6 @@ export class Rectangle extends DrawingObject {
   move (dx: number, dy: number): void {
     // console.log('mov')
     // this._isDragging = true // Q: How to make this change in this class and not in the canvas module
-    this.color = 'Red'
     this.position.y += dy
     this.position.x += dx
     this.point.x += dx
@@ -51,7 +54,6 @@ export class Rectangle extends DrawingObject {
   }
 
   endMovement (): void {
-    this.color = 'Black'
     this._isDragging = false
   }
 
@@ -59,7 +61,6 @@ export class Rectangle extends DrawingObject {
   }
 
   select (): void {
-    this.color = this.color === 'Red' ? 'Black' : 'Red'
     this._isSelected = !this._isSelected
   }
 
