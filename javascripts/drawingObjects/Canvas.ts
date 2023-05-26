@@ -47,7 +47,7 @@ export class Canvas {
     for (const object of this.objects) {
       if (object.isColliding(px, py)) {
         // console.log(`we are in the shape object id is ${object.id}`)
-        object.liftUp() // TODO create method in figure that lifts up, and make call in canvas
+        // object.liftUp() // TODO create method in figure that lifts up, and make call in canvas
         return object
       }
     }

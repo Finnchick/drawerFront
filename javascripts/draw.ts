@@ -98,6 +98,7 @@ function findColliding (event: MouseEvent): void {
   startY = event.offsetY
   if (event.which === 2) {
     currentObject = canvas.findColliding(startX, startY)
+    currentObject.liftUp()
     console.log(currentObject)
   }
 }
