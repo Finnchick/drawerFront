@@ -16,8 +16,13 @@ let selectedObject = null
 const typeCreatorMap = {
   line: createLine,
   circle: createCircle,
-  rectangle: createRectangle
+  rectangle: createRectangle,
+  cursor
 } // convert to ENUM
+
+function cursor (event: MouseEvent): void {
+  event.stopPropagation()
+}
 
 function createFigure (event: MouseEvent): void {
   if (event.which === 1) {
@@ -89,7 +94,6 @@ function cancelChange (event: KeyboardEvent): void {
 }
 let startX, startY
 function findColliding (event: MouseEvent): void {
-  console.log('3')
   startX = event.offsetX
   startY = event.offsetY
   if (event.which === 2) {
@@ -101,12 +105,10 @@ function findColliding (event: MouseEvent): void {
 function selectFigure (event: MouseEvent): void {
   startX = event.offsetX
   startY = event.offsetY
-  console.log('1')
   if (event.which === 1 && event.ctrlKey) {
     selectedObject = canvas.findColliding(startX, startY)
     selectedObject.select()
     canvas.rePaint()
-    console.log('2')
   }
 }
 
