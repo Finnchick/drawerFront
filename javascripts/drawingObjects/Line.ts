@@ -3,7 +3,7 @@ import { type Point } from '../helperTypes'
 import { calculateDistance } from '../helpers'
 
 export class Line extends DrawingObject {
-  private readonly points: [{ x: number, y: number }] = []
+  private point: Point
   public color: string
   private _isDragging: boolean = false
   private _isSelected: boolean = false
@@ -16,7 +16,7 @@ export class Line extends DrawingObject {
 
   create (startingPoint: Point, endingPoint: Point): void { // Q: should it return created object? I consider no
     this.position = startingPoint
-    this.points.push(endingPoint)
+    this.point = endingPoint
   }
 
   draw (context: CanvasRenderingContext2D): void {
@@ -24,7 +24,7 @@ export class Line extends DrawingObject {
     const { x: xStart, y: yStart } = this.position
     context.moveTo(xStart, yStart)
     console.log('tes')
-    const { x: xEnd, y: yEnd } = this.points[0]
+    const { x: xEnd, y: yEnd } = this.point
     context.lineTo(xEnd, yEnd)
     context.strokeStyle = this.color
     context.stroke()
@@ -32,11 +32,11 @@ export class Line extends DrawingObject {
 
   isColliding (px, py): boolean {
     const d1 = calculateDistance(px, py, this.position.x, this.position.y)
-    const d2 = calculateDistance(px, py, this.points[0].x, this.points[0].y)
+    const d2 = calculateDistance(px, py, this.point.x, this.point.y)
 
     console.log(px, py, this.position.x, this.position.y)
     // get the length of the line
-    const lineLen = calculateDistance(this.position.x, this.position.y, this.points[0].x, this.points[0].y)
+    const lineLen = calculateDistance(this.position.x, this.position.y, this.point.x, this.point.y)
     console.log(d1, d2, lineLen)
     // since floats are so minutely accurate, add
     // a little buffer zone that will give collision
@@ -53,8 +53,8 @@ export class Line extends DrawingObject {
     this.color = 'Red'
     this.position.y += dy
     this.position.x += dx
-    this.points[0].x += dx
-    this.points[0].y += dy
+    this.point.x += dx
+    this.point.y += dy
   }
 
   endMovement (): void {

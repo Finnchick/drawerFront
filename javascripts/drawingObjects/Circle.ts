@@ -2,7 +2,6 @@ import { DrawingObject } from './DrawingObject'
 import { type Point } from '../helperTypes'
 
 export class Circle extends DrawingObject {
-  private readonly points: [{ x: number, y: number }] = []
   private readonly radius: number = 50
   private _isDragging: boolean = false
   public color: string
