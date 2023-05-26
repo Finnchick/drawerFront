@@ -12,6 +12,7 @@ export class Rectangle extends DrawingObject {
     this.id = Date.now()
     this.color = 'Black'
     this._isDragging = false
+    this._isSelected = false
   }
 
   create (startingPoint: Point, endingPoint: Point): void {
