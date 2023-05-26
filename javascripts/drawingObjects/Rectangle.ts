@@ -2,7 +2,7 @@ import { DrawingObject } from './DrawingObject'
 import { type Point } from '../helperTypes'
 
 export class Rectangle extends DrawingObject {
-  private readonly points: [{ x: number, y: number }] = []
+  private point: Point
   public color: string
   private _isDragging: boolean // Q: TODO change to isSelected?
   private _isSelected: boolean
@@ -16,13 +16,13 @@ export class Rectangle extends DrawingObject {
 
   create (startingPoint: Point, endingPoint: Point): void {
     this.position = startingPoint
-    this.points.push(endingPoint)
+    this.point = endingPoint
   }
 
   draw (context: CanvasRenderingContext2D): void {
     const { x: startX, y: startY } = this.position
     context.beginPath()
-    const { x: endingX, y: endingY } = this.points[0]
+    const { x: endingX, y: endingY } = this.point
     const width = endingX - startX
     const height = endingY - startY
     context.rect(startX, startY, width, height)
@@ -45,8 +45,8 @@ export class Rectangle extends DrawingObject {
     this.color = 'Red'
     this.position.y += dy
     this.position.x += dx
-    this.points[0].x += dx
-    this.points[0].y += dy
+    this.point.x += dx
+    this.point.y += dy
     // this.draw(context)
   }
 
