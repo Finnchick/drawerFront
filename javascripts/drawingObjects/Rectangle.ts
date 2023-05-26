@@ -35,8 +35,18 @@ export class Rectangle extends DrawingObject {
   }
 
   isColliding (px: number, py: number): boolean {
-    const { x: rx, y: ry } = this.position
-    const { x: endingX, y: endingY } = this.points[0]
+    let { x: rx, y: ry } = this.position
+    let { x: endingX, y: endingY } = this.point
+    if (rx > endingX) {
+      [rx, endingX] = [endingX, rx]
+    }
+    if (ry > endingY) {
+      [ry, endingY] = [endingY, ry]
+    }
+    console.log(px >= rx && // right of the left edge AND
+        px <= endingX && // left of the right edge AND
+        py >= ry && // below the top AND
+        py <= endingY)
     return px >= rx && // right of the left edge AND
             px <= endingX && // left of the right edge AND
             py >= ry && // below the top AND
